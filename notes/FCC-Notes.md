@@ -67,4 +67,18 @@ SVG shapes for a web page must go within an HTML `svg` tag.
 
 Width and height attributes do not have units. This is the building block of scaling - the element will always have a 5:1 width to height ratio, no matter what the zoom level is.
 
-## Display Shapes with SVG
+## Dynamically Set the Coordinates for Each Bar
+```javascript
+selection.attr("property", (d, i) => {
+  /* 
+  * d is the data point value
+  * i is the index of the data point in the array
+  */
+})
+```
+`data()` method parses the data set, and any method that's chained after `data()` is run once for each item in the data set.
+## Invert SVG Elements
+The `y` coordinate that is `y = heightOfSVG - heightOfBar` would place the bars right-side-up.
+## Add Attributes to the Circle Elements
+All methods chained after `data(dataset)` run once per item in `dataset`.
+## Create a Linear Scale with D3
