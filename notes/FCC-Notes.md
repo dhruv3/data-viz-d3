@@ -82,3 +82,42 @@ The `y` coordinate that is `y = heightOfSVG - heightOfBar` would place the bars 
 ## Add Attributes to the Circle Elements
 All methods chained after `data(dataset)` run once per item in `dataset`.
 ## Create a Linear Scale with D3
+In D3, there are scales to help plot data. `Scales` are functions that tell the program how to map a set of raw data points onto the pixels of the SVG canvas.
+
+D3 has several scale types. For a linear scale (usually used with quantitative data), there is the D3 method scaleLinear():
+```javascript
+const scale = d3.scaleLinear()
+```
+By default, a scale uses the identity relationship. The value of the input is the same as the value of the output.
+## Set a Domain and a Range on a Scale
+```javascript
+// Set a domain
+// The domain covers the set of input values
+scale.domain([50, 480]);
+// Set a range
+// The range covers the set of output values
+scale.range([10, 500]);
+scale(50) // Returns 10
+scale(480) // Returns 500
+scale(325) // Returns 323.37
+scale(750) // Returns 807.67
+d3.scaleLinear()
+```
+## d3.min and d3.max
+```javascript
+const exampleData = [34, 234, 73, 90, 6, 52];
+d3.min(exampleData) // Returns 6
+d3.max(exampleData) // Returns 234
+```
+`min()` and `max()` methods take a callback function.
+```javascript
+const locationData = [[1, 7],[6, 3],[8, 3]];
+// Returns the smallest number out of the first elements
+const minX = d3.min(locationData, (d) => d[0]);
+// minX compared 1, 6, and 8 and is set to 1
+```
+## Use Dynamic Scales
+```javascript
+range([padding, w - padding])
+```
+The padding may be confusing at first. Picture the x-axis as a horizontal line from 0 to 500 (the width value for the SVG canvas). Including the padding in the `range()` method forces the plot to start at 30 along that line (instead of 0), and end at 470 (instead of 500).
