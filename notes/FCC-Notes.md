@@ -121,3 +121,26 @@ const minX = d3.min(locationData, (d) => d[0]);
 range([padding, w - padding])
 ```
 The padding may be confusing at first. Picture the x-axis as a horizontal line from 0 to 500 (the width value for the SVG canvas). Including the padding in the `range()` method forces the plot to start at 30 along that line (instead of 0), and end at 470 (instead of 500).
+## Use a Pre-Defined Scale to Place Elements
+```javascript
+shape.attr("x", (d) => xScale(d[0]))
+```
+## Add Axes to a Visualization
+To render the axis on the SVG canvas you can use a general SVG component, the `g` element. The `g` stands for group.
+```javascript
+const xAxis = d3.axisBottom(xScale);
+
+svg.append("g")
+   .attr("transform", "translate(0, " + (h - padding) + ")")
+   .call(xAxis);
+```
+The above code places the x-axis at the bottom of the SVG canvas. Then it's passed as an argument to the `call()` method.
+
+For y-axis to as follow:
+```javascript
+const yAxis = d3.axisLeft(yScale);   
+
+svg.append("g")
+   .attr("transform", "translate("+ (h - padding) +",0)")
+   .call(yAxis);
+```
